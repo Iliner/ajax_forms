@@ -1,0 +1,37 @@
+{% extends 'index/index.html' %}
+
+{% block content %}
+<div class='main'>
+	<table class='table table-hover'>
+		<thead>
+			<th>Код</th>
+			<th>Производитель</th>
+			<th>Артикул</th>
+			<th>Описание</th>
+			<th>Цена</th>
+			<th class='row_th_img'>Фото</th>
+			<th>Заказать</th>
+			<th>Добавить</th>
+		</thead>
+		<tbody>
+			<tr>
+				<th><{{good.code}}</th>
+				<th>{{good.producer}}</th>
+				<th>{{good.articul}}</th>
+				<th>{{good.description}}</th>
+				<th>{{good.price}}</th>
+				{% if not good.photo %}
+					<th class='row_th_img'><img id='row_img' src="{{default_img.url}}"></th>
+				{% else %}
+					<th class='row_th_img'><img id='row_img' src="{{good.photo.photo.url}}"></th>
+				{% endif %}
+				<th>
+					<form action='' method='post'>
+						{% csrf_token %}
+						{{ form.as_p }}
+					</form>
+				</th>
+			</tr>	
+		</tbody>	
+	</table>
+{% endblock %}

@@ -17,6 +17,9 @@ from django.conf.urls import url
 from a_index.views import *
 
 urlpatterns = [
-	url(r'main', JoinFormView.as_view(),  name='index'),
+	url(r'^main/$', JoinFormView.as_view(),  name='index'),
+	url(r'^main_view/$', index,  name='index_view'),
 	url(r'^join/', JoinFormView.as_view()),
+	url(r'^main_view/count/add$', add_view, name='add_count'),
+	url(r'good/(?:(?P<code>\d+)/)$', GoodDetailView.as_view(), name='good_page'),
 ]

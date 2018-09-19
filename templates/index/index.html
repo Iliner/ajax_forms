@@ -7,10 +7,6 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="{% static 'css/main.css' %}">
-		<link rel="stylesheet" href="{% static '/pushy-master/css/normalize.css' %}">
-		<link rel="stylesheet" href="{% static '/pushy-master/css/demo.css' %}">
-		<link rel="stylesheet" href="{% static '/pushy-master/css/pushy.css' %}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		{% block additional_css %}{% endblock %}
 		{% block additional_js %}{% endblock %}
@@ -21,7 +17,25 @@
 		
 		<nav class='navbar navbar-expand-lg navbar-dark bg-dark' id='navbar_header'>
 			<a href="{% url 'index' %}"  class='navbar-brand'><img src="{% static 'logo/logotype-header.png' %}" alt='logo' width="150", height="55"></a>
-			<div class="btn-group">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+        			<a class="nav-link" href="{% url 'index_view' %}">view</a>
+      			</li>
+				<li class="nav-item">
+        			<a class="nav-link" href="{% url 'index' %}">class</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="{% url 'good_page' code=22 %}">good_page</a>
+      			</li>
+     			<li class="nav-item" style="color: red;">
+     				{% for good in goods %}
+        				{% if good.code == '22' %}
+        					{{good.order_count}}
+        				{% endif %}
+        			{% endfor %}
+      			</li>
+			</ul>
 			</div>
 		</nav>
 		{% block content %}
@@ -29,8 +43,7 @@
 
 
 
-		<script type="text/javascript"></script>
-		<script src="{% static '/pushy-master/js/pushy.min.js' %}"></script>
+
 		<script type="text/javascript">
 			if($(window).scrollTop() != '0'){
 				console.log('TYee');
